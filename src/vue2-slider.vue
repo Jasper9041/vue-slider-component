@@ -331,12 +331,13 @@ export default {
 			return this.direction === 'vertical' ? (this.reverse ? (e.pageY - this.offset) : (this.size - (e.pageY - this.offset))) : (this.reverse ? (this.size - (e.clientX - this.offset)) : (e.clientX - this.offset))
 		},
 		wrapClick(e) {
-			if (this.isDisabled || !this.clickable) return false
-			let pos = this.getPos(e)
+			if (this.isDisabled || !this.clickable) return false;
+			let pos = this.getPos(e);
 			if (this.isRange) {
 				this.currentSlider = pos > ((this.position[1] - this.position[0]) / 2 + this.position[0]) ? 1 : 0
 			}
-			this.setValueOnPos(pos)
+			this.setValueOnPos(pos);
+			this.$emit('seeked');
 		},
 		moveStart(index) {
 			if (this.isDisabled) return false
